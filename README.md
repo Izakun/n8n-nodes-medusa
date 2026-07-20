@@ -1,29 +1,67 @@
+<img src="nodes/Medusa/medusa.svg" width="90" align="right" alt="Medusa" />
+
 # n8n-nodes-medusa
 
 [![npm version](https://img.shields.io/npm/v/n8n-nodes-medusa.svg)](https://www.npmjs.com/package/n8n-nodes-medusa)
+[![npm downloads](https://img.shields.io/npm/dm/n8n-nodes-medusa.svg)](https://www.npmjs.com/package/n8n-nodes-medusa)
+[![License: MIT](https://img.shields.io/npm/l/n8n-nodes-medusa.svg)](./LICENSE)
+[![n8n verified](https://img.shields.io/badge/n8n-verified%20community%20node-EA4B71)](https://docs.n8n.io/integrations/community-nodes/installation/verified-install/)
 
-n8n community node for [Medusa](https://pymedusa.com/) — the TV show automation tool — via its v2 API.
+Community node for **n8n** to interact with **Medusa**. It lets you automate
+Medusa directly from your n8n workflows using a secure stored credential.
 
-Install via **Settings -> Community Nodes -> Install** -> `n8n-nodes-medusa`.
+> ✅ **Verified community node** — installable directly from the n8n node panel
+> (self-hosted **and** n8n Cloud).
+
+## Installation
+
+This is a **verified** community node: in n8n click **+ (Add node)**, search for
+**Medusa**, and add it — no manual install needed.
+
+<details>
+<summary>Manual install (older n8n, or as an unverified package)</summary>
+
+Go to **Settings → Community Nodes → Install** and enter `n8n-nodes-medusa`.
+</details>
 
 ## Operations
-- Get Series, Get Config, Get Stats
 
-## Credentials
-Configure the base URL and authentication in the **Medusa API** credential.
+| Operation | Description |
+|---|---|
+| **Get Config** | Get the configuration |
+| **Get Series** | Get many series |
+| **Get Stats** | Get statistics |
 
-## Usage example
+## Authentication
 
-List your TV shows:
+This node uses the **Medusa API** credential. In n8n, go to **Credentials → New**, pick
+**Medusa API**, and fill in:
 
-1. Add the node after a trigger (e.g. *When clicking 'Test workflow'*).
-2. Select your credential.
-3. Resource **Series** → **Get Many**.
-4. Execute the node — example output:
+- **Base URL** — the address of your instance, e.g. `http://medusa:8081` (no trailing slash).
+- **API Key** — your service API key.
 
-```json
-{ "id": 12, "title": "Severance", "network": "Apple TV+", "status": "Continuing" }
-```
+Your credential is sent as the `X-Api-Key` request header.
 
-## Disclaimer
-Not affiliated with or endorsed by the respective project.
+**Where to find it:** See the service documentation: https://github.com/pymedusa/Medusa/wiki
+
+The credential's **Test** button verifies the connection before you save.
+
+## Usage
+
+1. Add the **Medusa** node to a workflow (after a trigger such as *When clicking 'Test workflow'* or a Schedule Trigger).
+2. Select your **Medusa API** credential.
+3. Pick an **Operation** and run the workflow — the response is returned as JSON for the next node.
+
+## Compatibility
+
+Requires n8n **1.0** or newer. Built and linted with the official `@n8n/node-cli`, and
+published to npm with a build-provenance attestation.
+
+## Resources
+
+- [Medusa](https://github.com/pymedusa/Medusa/wiki)
+- [n8n community nodes documentation](https://docs.n8n.io/integrations/community-nodes/)
+
+## License
+
+[MIT](./LICENSE)
